@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import { FC, useEffect } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+import NavBarContainer from './Containers/Common/NavBarContainer';
+import HomePage from './Components/Home';
+import AboutPage from './Containers/About';
+import Footer from './Components/Common/Footer';
+import ConnectPage from './Containers/Connect';
+import BusinessPage from './Containers/Business';
+import ProfilePage from './Containers/Business/Profile';
 
-function App() {
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+const App: FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <ScrollToTop />
+        <NavBarContainer />
+        <Switch>
+          <Route exact={true} path="/" component={HomePage} />
+          <Route path="/about" component={AboutPage} />
+          <Route exact={true} path="/business" component={BusinessPage} />
+          <Route path="/business/:id/:name" component={ProfilePage} />
+          <Route path="/connect" component={ConnectPage} />
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   );
 }
