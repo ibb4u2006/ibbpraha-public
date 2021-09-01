@@ -3,7 +3,7 @@ import { isDesktopOrLarger, isTabletOrMobile } from "../../utils/screens";
 import IconFilter from "../../asset/SVGIcons/IconFilter";
 import Categories from "./Categories";
 import { FC } from "react";
-import Profiles from "../../Containers/Business/Profiles";
+import Profiles from "./Profiles";
 
 interface IProps {
     businesses: any;
